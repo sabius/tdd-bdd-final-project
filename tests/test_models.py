@@ -24,7 +24,7 @@ While debugging just these tests it's convenient to use this:
 
 """
 import os
-import logging
+# import logging
 import unittest
 from decimal import Decimal
 from service.models import Product, Category, db
@@ -129,7 +129,7 @@ class TestProductModel(unittest.TestCase):
         product.id = None
         product.create()
         self.assertIsNotNone(product.id)
-        #Change it and save it
+        # Change it and save it
         product.description = "testing"
         original_id = product.id
         product.update()
@@ -159,7 +159,7 @@ class TestProductModel(unittest.TestCase):
         for _ in range(5):
             product = ProductFactory()
             product.create()
-        
+
         # Check the database for 5 products
         products = Product.all()
         self.assertEqual(len(products), 5)
@@ -177,6 +177,7 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(product.name, name)
 
     def test_find_a_product_by_availability(self):
+        """It should Find Products by Availability"""
         products = ProductFactory.create_batch(10)
         for product in products:
             product.create()
